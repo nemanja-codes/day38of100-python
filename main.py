@@ -7,6 +7,7 @@ AGE = "25"
 
 APP_ID = "cf4cf641"
 API_KEY = "70e72e9ed023cbb55c90588e904bc068"
+BEARER_TOKEN = "naskfdplewjJJASpf12839qpPPLQWLlsa"
 
 nutri_endpoint = "https://trackapi.nutritionix.com/v2/natural/exercise"
 
@@ -20,6 +21,10 @@ headers = {
     "weight_kg": WEIGHT_KG,
     "height_cm": HEIGHT_CM,
     "age": AGE
+}
+
+sheet_header = {
+    "Authorization": f"Bearer {BEARER_TOKEN}"
 }
 
 response = requests.post(url=nutri_endpoint, json=nutri_config, headers=headers)
@@ -44,5 +49,5 @@ for exercise in list_of_exercises:
         }
     }
 
-    requests.post(url=sheet_endpoint, json=sheet_data_to_add)
+    requests.post(url=sheet_endpoint, json=sheet_data_to_add, headers=sheet_header)
 
