@@ -1,15 +1,16 @@
 import requests
 from datetime import datetime
+import os
 
 WEIGHT_KG = "88"
 HEIGHT_CM = "190"
 AGE = "25"
 
-APP_ID = "cf4cf641"
-API_KEY = "70e72e9ed023cbb55c90588e904bc068"
-BEARER_TOKEN = "naskfdplewjJJASpf12839qpPPLQWLlsa"
+APP_ID = os.environ.get("APP_ID")
+API_KEY = os.environ.get("APP_KEY")
+BEARER_TOKEN = os.environ.get("BEARER_TOKEN")
 
-nutri_endpoint = "https://trackapi.nutritionix.com/v2/natural/exercise"
+nutri_endpoint = os.environ.get("NUTRI_ENDPOINT")
 
 nutri_config = {
     "query": input("Tell me which exercise you did: ")
@@ -32,7 +33,7 @@ response.raise_for_status()
 result = response.json()
 list_of_exercises = result["exercises"]
 
-sheet_endpoint = "https://api.sheety.co/643dccdcddb0204a103d7f46ce9f9a94/workoutTracking/workouts"
+sheet_endpoint = os.environ.get("SHEET_ENDPOINT")
 
 now = datetime.now()
 today_date = now.strftime("%d/%m/%Y")
